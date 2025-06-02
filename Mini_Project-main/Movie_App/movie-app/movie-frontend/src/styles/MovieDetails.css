@@ -1,0 +1,307 @@
+.movie-details-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  color: #357abd;
+  transform: translateX(-5px);
+}
+
+.movie-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-poster {
+ 
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-poster:hover {
+  transform: scale(1.05);
+}
+
+.movie-info {
+  padding: 2rem;
+}
+
+.movie-title {
+  color: #1a1a1a;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.movie-genre {
+  display: inline-block;
+  background: #4a90e2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.movie-year,
+.movie-director,
+.movie-duration {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.movie-year::before {
+  content: "🎬";
+  font-size: 1.2rem;
+}
+
+.movie-director::before {
+  content: "🎥";
+  font-size: 1.2rem;
+}
+
+.movie-duration::before {
+  content: "⏱️";
+  font-size: 1.2rem;
+}
+
+.movie-summary {
+  color: #444;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.edit-button,
+.delete-button,
+.save-button,
+.cancel-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background: #4a90e2;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #357abd;
+}
+
+.delete-button {
+  background: #dc2626;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}
+
+.save-button {
+  background: #10b981;
+  color: white;
+}
+
+.save-button:hover {
+  background: #059669;
+}
+
+.cancel-button {
+  background: #6b7280;
+  color: white;
+}
+
+.cancel-button:hover {
+  background: #4b5563;
+}
+
+.edit-input,
+.edit-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.edit-input:focus,
+.edit-textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.edit-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .movie-details-container {
+    margin: 1rem auto;
+  }
+
+  .movie-title {
+    font-size: 2rem;
+  }
+
+  .movie-info {
+    padding: 1.5rem;
+  }
+
+  .movie-poster {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-title {
+    font-size: 1.75rem;
+  }
+
+  .movie-info {
+    padding: 1rem;
+  }
+
+  .movie-summary {
+    font-size: 1rem;
+  }
+
+  .movie-poster {
+    min-height: 300px;
+  }
+
+  .admin-controls {
+    flex-direction: column;
+  }
+}
+
+.actors-section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+}
+
+.actors-section h3 {
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.actor-input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.actor-input-group .edit-input {
+  flex: 1;
+}
+
+.remove-actor-button {
+  padding: 0.5rem 1rem;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-actor-button:hover {
+  background: #b91c1c;
+}
+
+.add-actor-button {
+  padding: 0.75rem 1.5rem;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.add-actor-button:hover {
+  background: #357abd;
+} 

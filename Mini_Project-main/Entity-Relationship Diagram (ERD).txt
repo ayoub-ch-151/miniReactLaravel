@@ -1,0 +1,34 @@
+Entity-Relationship Diagram (ERD):
+
+# movies
+* id (PK)
+* title
+* summary
+* release_year
+* duration
+* genre
+* director_id (FK → directors.id)
+
+#actors
+* id (PK)
+* first_name
+* last_name
+* birth_date
+* country
+
+#directors
+* id (PK)
+* first_name
+* last_name
+* birth_date
+* movie_actor (pivot)
+* movie_id (FK → movies.id)
+* actor_id (FK → actors.id)
+* role
+
+#Relationships:
+* One director has many movies
+* One movie belongs to one director
+* Many actors belong to many movies (through movie_actor pivot)
+* Many movies have many actors (through movie_actor pivot)
+

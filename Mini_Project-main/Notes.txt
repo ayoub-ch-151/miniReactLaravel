@@ -1,0 +1,100 @@
+| Table            | Fields                                                                            |
+| ---------------- | --------------------------------------------------------------------------------- |
+| **movies**       | `id`, `title`, `summary`, `release_year`, `duration`, `genre`, `director_id (FK)` |
+| **actors**       | `id`, `first_name`, `last_name`, `birth_date`, `country`                          |
+| **directors**    | `id`, `first_name`, `last_name`, `birth_date`                                     |
+| **movie\_actor** | `movie_id (FK)`, `actor_id (FK)`, `role` (pivot table)                            |
+========================================================================================================
+# Relationships:
+*A movie belongs to one director
+*A director has many movies
+*A movie has many actors
+*An actor plays in many movies (many-to-many with movie_actor pivot)
+=========================================================================================================
+[Main Features]
+# 🧭 Public Features:
+* View all movies
+* View movie details
+* Search by title / genre / actor
+* Pagination
+#✏️ Admin Features:
+* Add a new movie
+* Edit movie details
+* Delete a movie
+
+
+# Optional Features (can add later):
+* User authentication (register/login)
+* User reviews
+* Rating system (stars)
+*Favorite movies
+=========================================================================================================
+# DataBase_Name: "movie_app_db",
+===================================================================================================
+
+=========================================================================
+-- Wipe all data
+DELETE FROM movie_actor;
+DELETE FROM movies;
+DELETE FROM actors;
+DELETE FROM directors;
+
+-- Reset IDs
+ALTER TABLE directors AUTO_INCREMENT = 1;
+ALTER TABLE actors AUTO_INCREMENT = 1;
+ALTER TABLE movies AUTO_INCREMENT = 1;
+ALTER TABLE movie_actor AUTO_INCREMENT = 1;
+
+-- === DIRECTORS ===
+INSERT INTO directors (first_name, last_name, birth_date, created_at, updated_at) VALUES
+('Christopher', 'Nolan', '1970-07-30', NOW(), NOW()),
+('Quentin', 'Tarantino', '1963-03-27', NOW(), NOW()),
+('Steven', 'Spielberg', '1946-12-18', NOW(), NOW()),
+('James', 'Cameron', '1954-08-16', NOW(), NOW()),
+('Peter', 'Jackson', '1961-10-31', NOW(), NOW());
+
+-- === ACTORS ===
+INSERT INTO actors (first_name, last_name, birth_date, country, created_at, updated_at) VALUES
+('Leonardo', 'DiCaprio', '1974-11-11', 'USA', NOW(), NOW()),
+('Joseph', 'Gordon-Levitt', '1981-02-17', 'USA', NOW(), NOW()),
+('Elliot', 'Page', '1987-02-21', 'Canada', NOW(), NOW()),
+('Samuel L.', 'Jackson', '1948-12-21', 'USA', NOW(), NOW()),
+('Uma', 'Thurman', '1970-04-29', 'USA', NOW(), NOW()),
+('Tom', 'Hanks', '1956-07-09', 'USA', NOW(), NOW()),
+('Kate', 'Winslet', '1975-10-05', 'UK', NOW(), NOW()),
+('Elijah', 'Wood', '1981-01-28', 'USA', NOW(), NOW()),
+('Ian', 'McKellen', '1939-05-25', 'UK', NOW(), NOW()),
+('John', 'Travolta', '1954-02-18', 'USA', NOW(), NOW()),
+('Morgan', 'Freeman', '1937-06-01', 'USA', NOW(), NOW());
+
+-- === MOVIES ===
+INSERT INTO movies (title, summary, release_year, duration, genre, poster_url, director_id, created_at, updated_at) VALUES
+('Inception', 'A thief who steals corporate secrets through dream-sharing tech.', 2010, 148, 'Sci-Fi', 'https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg', 1, NOW(), NOW()),
+('Pulp Fiction', 'Stories of crime and redemption collide in LA.', 1994, 154, 'Crime', 'https://image.tmdb.org/t/p/w500/dM2w364MScsjFf8pfMbaWUcWrR.jpg', 2, NOW(), NOW()),
+('Titanic', 'An epic romance and disaster on the doomed ship.', 1997, 195, 'Romance', 'https://image.tmdb.org/t/p/w500/kHXEpyfl6zqn8a6YuozZUujufXf.jpg', 4, NOW(), NOW()),
+('The Lord of the Rings: The Fellowship of the Ring', 'A young hobbit sets out to destroy a powerful ring.', 2001, 178, 'Fantasy', 'https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg', 5, NOW(), NOW()),
+('Saving Private Ryan', 'A mission to rescue a paratrooper after D-Day.', 1998, 169, 'War', 'https://image.tmdb.org/t/p/w500/miDoEMlYDJhOCvxlzI0wZqBs9Yt.jpg', 3, NOW(), NOW()),
+('The Dark Knight', 'Batman faces the Joker in a gritty crime saga.', 2008, 152, 'Action', 'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg', 1, NOW(), NOW()),
+('Django Unchained', 'A freed slave sets out to rescue his wife.', 2012, 165, 'Western', 'https://image.tmdb.org/t/p/w500/7oWY8VDWW7thTzWh3OKYRkWUlD5.jpg', 2, NOW(), NOW()),
+('Forrest Gump', 'A man with a low IQ witnesses defining moments in US history.', 1994, 142, 'Drama', 'https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg', 3, NOW(), NOW()),
+('Avatar', 'A Marine on an alien planet gets caught between two worlds.', 2009, 162, 'Sci-Fi', 'https://image.tmdb.org/t/p/w500/kmcqlZGaSh20zpTbuoF0Cdn07dT.jpg', 4, NOW(), NOW()),
+('The Shawshank Redemption', 'Two imprisoned men bond over decades.', 1994, 142, 'Drama', 'https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg', 3, NOW(), NOW());
+
+-- === MOVIE_ACTOR ===
+INSERT INTO movie_actor (movie_id, actor_id, role, created_at, updated_at) VALUES
+(1, 1, 'Dom Cobb', NOW(), NOW()),
+(1, 2, 'Arthur', NOW(), NOW()),
+(1, 3, 'Ariadne', NOW(), NOW()),
+(2, 4, 'Jules Winnfield', NOW(), NOW()),
+(2, 5, 'Mia Wallace', NOW(), NOW()),
+(2, 10, 'Vincent Vega', NOW(), NOW()),
+(3, 1, 'Jack Dawson', NOW(), NOW()),
+(3, 7, 'Rose DeWitt Bukater', NOW(), NOW()),
+(4, 8, 'Frodo Baggins', NOW(), NOW()),
+(4, 9, 'Gandalf', NOW(), NOW()),
+(5, 6, 'Captain John Miller', NOW(), NOW()),
+(6, 1, 'Bruce Wayne / Batman', NOW(), NOW()),
+(7, 4, 'Stephen', NOW(), NOW()),
+(8, 6, 'Forrest Gump', NOW(), NOW()),
+(9, 1, 'Jake Sully', NOW(), NOW()),
+(10, 11, 'Ellis Boyd "Red" Redding', NOW(), NOW());

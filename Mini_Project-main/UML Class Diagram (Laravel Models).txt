@@ -1,0 +1,45 @@
+# Classes:
+
+Movie
+
+Actor
+
+Director
+
+MovieActor (pivot)
+
+# Attributes & Methods:
+
+# Movie
+*id: int
+*title: string
+*summary: string
+*release_year: int
+*duration: int
+*genre: string
+*director_id: int
+*relationships:
+*director(): belongsTo(Director)
+*actors(): belongsToMany(Actor)
+
+# Actor
+*id: int
+*first_name: string
+*last_name: string
+*birth_date: date
+*country: string
+*relationships:
+*movies(): belongsToMany(Movie)
+
+# Director
+*id: int
+*first_name: string
+*last_name: string
+*birth_date: date
+*relationships:
+*movies(): hasMany(Movie)
+
+# MovieActor (pivot)
+*movie_id: int
+*actor_id: int
+*role: string
